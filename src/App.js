@@ -1,11 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-
 import './App.css';
 
-import { Nav } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
+import { 
+         Nav,
+         Navbar,
+         Container 
+        } 
+from 'react-bootstrap';
+
+import HomePage from "./pages/home"
+import AboutPage from "./pages/about"
+import ContactPage from "./pages/contact"
+
+import Footer from "./components/Footer"
+                  
 
 class App extends React.Component {
 
@@ -36,7 +45,6 @@ class App extends React.Component {
     return (
       <Router>
         <Container className="p-0" fluid={true}>
-
           <Navbar className="border-bottom" bg="transparent" expand="lg">
             <Navbar.Brand>Jonathan Roth</Navbar.Brand>
 
@@ -49,7 +57,11 @@ class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+          <Route path="/" exact render={ () => <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle} body={this.state.home.body} /> } />
+          <Route path="/about" render={ () => <AboutPage title={this.state.about.title} /> } />
+          <Route path="/contact" render={ () => <ContactPage title={this.state.contact.title} /> } />
 
+          <Footer />
         </Container>
       </Router>
     )
